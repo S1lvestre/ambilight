@@ -25,11 +25,13 @@ void loop() {
       analogWrite(redpin,red);
       analogWrite(greenpin, green);
       analogWrite(bluepin, blue);
+
+      Serial.flush();
       
       // print the three numbers in one string as hexadecimal:
-      Serial.print(red, HEX);
-      Serial.print(green, HEX);
-      Serial.println(blue, HEX);
+      //Serial.print(red, HEX);
+      //Serial.print(green, HEX);
+      //Serial.println(blue, HEX);
     }
   }
 }
