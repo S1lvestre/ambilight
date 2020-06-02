@@ -11,7 +11,7 @@ def colorWrite(r, g, b):
     print("R,G,B = " + str(r) + ","+ str(g) + "," + str(b))
     ser.write((str(r) + ","+ str(g) + "," + str(b) + "\n").encode())
 
-ser = serial.Serial("/dev/ttyACM1", baudrate = 9600, timeout = 1)
+ser = serial.Serial("/dev/ttyACM0", baudrate = 9600, timeout = 1)
 
 with mss.mss() as sct:
 
