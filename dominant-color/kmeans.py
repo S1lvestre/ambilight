@@ -59,7 +59,7 @@ while True:
         centroids[cent] = update_centroid(dataIN, current, centroids[cent])
  
     # calculate new distances
-    distances = get_distances(current, centroids)
+    distances = get_distances(dataIN, centroids)
 
     iteration += 1
 
