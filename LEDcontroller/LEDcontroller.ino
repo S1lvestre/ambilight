@@ -5,8 +5,8 @@
 #include <FastLED.h>
 
 #define LED_TYPE APA102
-#define COLOR_ORDER BGR
-#define NUM_LEDS 82
+#define COLOR_ORDER RGB
+#define NUM_LEDS 84
 
 #define DATA_PIN 2
 #define CLOCK_PIN 3
@@ -43,6 +43,7 @@ boolean mayApplyColors = false;
 void setup()
 {
     FastLED.addLeds<LED_TYPE, DATA_PIN, CLOCK_PIN, COLOR_ORDER>(strip, NUM_LEDS);
+    FastLED.setBrightness(200);
 
     Serial.begin(9600);
     Serial.println("<Arduino is Ready>");
@@ -59,8 +60,6 @@ void loop()
     getSerialData();
     
     applyColors();
-
-    Serial.println("Send Next>");
 }
 
 // ===============
@@ -128,6 +127,8 @@ void applyColors()
         Serial.write( endMarker ); */
         
         mayApplyColors = false;
+        
+        Serial.println("<Send Next>");
     }
 }
 
