@@ -100,7 +100,7 @@ def recvFromArduino():
 #
 #=========================
 
-ser = serial.Serial("/dev/ttyACM0", baudrate = 187800)
+ser = serial.Serial("/dev/ttyACM0", baudrate = 500000) # 187800
 print("\nSerial port /dev/ttyACM0 opened;\nBaudrate 187800\n")
 
 waitForMessage("Arduino is Ready")
@@ -124,13 +124,13 @@ while True:
          
         #left
         for i in range(16):
-            zone = img[ 1080-(67*i):1013-(67*i) , 0:25]
+            zone = img[ 1013-(67*i):1080-(67*i) , 0:25]
             avrgColor = calcAvrg(zone)
             goingOut += rgbToStr(avrgColor)
         
         # top row
-        for top_i in range(26) :
-            zone = img[0:25, (73*top_i): (73*(top_i+1))]
+        for top_i in range(28) :
+            zone = img[0:25, (68*top_i): (68*(top_i+1))]
             avrgColor = calcAvrg(zone)
             goingOut += rgbToStr(avrgColor)
         
@@ -147,7 +147,6 @@ while True:
             goingOut += rgbToStr(avrgColor)
         
         goingOut += '>'
-    
     t1 = time.time()
 
     # send next frame of colors
@@ -162,16 +161,14 @@ while True:
     print( "║     Sent: " + goingOut      )
     print( "╚═════════════════════════\n" )
 
-    print( "╔═════ TIME ══════════════"   )
-    print( "║      Loop : ", t1-t0 + 0.02, "s"   )
-    print( "║ ser.write : ", t2-t1, "s"   )
+    print( "╔═════ TIME (s) ══════════"   )
+    print( "║      Loop : ", t1-t0        )
+    print( "║ ser.write : ", t2-t1        )
+    print( "║     Total : ", t2-t0        )
     print( "╚═════════════════════════\n" )
 
     
     
-    time.sleep(0.02)
-
-
 ser.close
 print("Serial port /dev/ttyACM0 closed;\n")
 
