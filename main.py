@@ -18,7 +18,7 @@ import time
 #
 #=========================
 
-numLEDS = 84
+numLEDS = 78
 zonesCount = [26, 16]    # top/bottom, left/right
 
 zonesL = 72
@@ -100,68 +100,77 @@ def recvFromArduino():
 #
 #=========================
 
-ser = serial.Serial("/dev/ttyACM0", baudrate = 9600)
-print("\nSerial port /dev/ttyACM0 opened;\nBaudrate 9600\n")
+ser = serial.Serial("/dev/ttyACM0", baudrate = 187800)
+print("\nSerial port /dev/ttyACM0 opened;\nBaudrate 187800\n")
 
 waitForMessage("Arduino is Ready")
 arduinoIsReady = True
 
 while True:
-    # This isn't running fast enough for this if else to make sense...
-    # yet
-    if True : #arduinoIsReady :
-        # get frame of colors
-        with mss.mss() as sct:
-            goingOut = "<"
+    t0 = time.time()
 
-            # Get raw pixels from the screen, save it to a Numpy array
-            img = np.array(sct.grab(monitor))[:,:,:3]
-           
-            #bot left
-            for i in range(9):
-                zone = img[-50:1080 , 584-(73*i):658-(73*i)]
-                avrgColor = calcAvrg(zone)
-                goingOut += rgbToStr(avrgColor)
-            
-            #left
-            for i in range(16):
-                zone = img[ 1080-(67*i):1013-(67*i) , 0:50]
-                avrgColor = calcAvrg(zone)
-                goingOut += rgbToStr(avrgColor)
-
-            # top row
-            for top_i in range(26) :
-                zone = img[0:50, (73*top_i): (73*(top_i+1))]
-                avrgColor = calcAvrg(zone)
-                goingOut += rgbToStr(avrgColor)
-
-            #right
-            for i in range(16):
-                zone = img[ 0+(67*i):67+(67*i) , -50:1920]
-                avrgColor = calcAvrg(zone)
-                goingOut += rgbToStr(avrgColor)
-
-            #bot right
-            for i in range(9):
-                zone = img[-50:1080 , 1847-(73*i):1921-(73*i)]
-                avrgColor = calcAvrg(zone)
-                goingOut += rgbToStr(avrgColor)
-
-            goingOut += '>'
+    # get frame of colors
+    with mss.mss() as sct:
+        goingOut = "<"
         
-        # send next frame of colors
-        ser.write(goingOut.encode())
-        arduinoIsReady = False
+        # Get raw pixels from the screen, save it to a Numpy array
+        img = np.array(sct.grab(monitor))[:,:,:3]
+         
+        #bot left
+        for i in range(9):
+            zone = img[-25:1080 , 584-(73*i):658-(73*i)]
+            avrgColor = calcAvrg(zone)
+            goingOut += rgbToStr(avrgColor)
+         
+        #left
+        for i in range(16):
+            zone = img[ 1080-(67*i):1013-(67*i) , 0:25]
+            avrgColor = calcAvrg(zone)
+            goingOut += rgbToStr(avrgColor)
         
-        print( "╔═══════ PC ══════════════"   )
-        print( "║     Sent: " + goingOut      )
-        print( "╚═════════════════════════\n" )
+        # top row
+        for top_i in range(26) :
+            zone = img[0:25, (73*top_i): (73*(top_i+1))]
+            avrgColor = calcAvrg(zone)
+            goingOut += rgbToStr(avrgColor)
+        
+        #right
+        for i in range(16):
+            zone = img[ 0+(67*i):67+(67*i) , -25:1920]
+            avrgColor = calcAvrg(zone)
+            goingOut += rgbToStr(avrgColor)
+        
+        #bot right
+        for i in range(9):
+            zone = img[-25:1080 , 1847-(73*i):1921-(73*i)]
+            avrgColor = calcAvrg(zone)
+            goingOut += rgbToStr(avrgColor)
+        
+        goingOut += '>'
+    
+    t1 = time.time()
 
-    # This isn't running fast enough for this if else to make sense...
-    #else :
-        # wait for signal from arduino
-    #    waitForMessage("Send Next")
-    #    arduinoIsReady = True
+    # send next frame of colors
+    ser.write(goingOut.encode())
+    #arduinoIsReady = False
+    
+    t2 = time.time()
+
+
+
+    print( "╔══════ PC ═══════════════"   )
+    print( "║     Sent: " + goingOut      )
+    print( "╚═════════════════════════\n" )
+
+    print( "╔═════ TIME ══════════════"   )
+    print( "║      Loop : ", t1-t0 + 0.02, "s"   )
+    print( "║ ser.write : ", t2-t1, "s"   )
+    print( "╚═════════════════════════\n" )
+
+    
+    
+    time.sleep(0.02)
+
 
 ser.close
 print("Serial port /dev/ttyACM0 closed;\n")
