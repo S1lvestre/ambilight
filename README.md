@@ -25,9 +25,9 @@ Or...
 If you want to try another setup go to **main.py, line 29** and change the screen capture zone.
 
 To use simply enter the repo folder and run:
-"""
+```
 python main.py
-"""
+```
 
 ******
 ## Python
