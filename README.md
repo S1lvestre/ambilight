@@ -1,6 +1,7 @@
 # My take on ambilight
 Here's my take on creating an ambilight for my home TV. 
-Python does the image aquisition and calculations while the arduino drives the APA102 LEDs.
+Python does the image aquisition and calculations while the arduino drives the APA102 LEDs.  
+(It could eventually do more and better but for now it's working well enough.)
 
 Obligatory screenshot with results.  
 \< insert image \>  
@@ -18,28 +19,35 @@ Gear:
 \< pic \>
 
 ### Software
-Clone this repo
+Software: (see **requirements.txt**)
+- Python 3
+  - mss
+  - numpy
+  - pyserial
 
-**Make sure the TV screen/monitor is 1920x1080p and is the only screen**  
+1 Clone this repo
+
+2 **Make sure the TV screen/monitor is 1920x1080p and is the only screen**  
 Or...  
-If you want to try another setup go to **main.py, line 29** and change the screen capture zone.
+2 If you want to try another setup go to **main.py, line 29** and change the screen capture zone.
 
-To use simply enter the repo folder and run:
+3 To use simply enter the repo folder and run:
 ```
 python main.py
 ```
+(do not close the terminal)
 
 ******
 ## Python
 Functions:  
-- Get screenshot (mss module);
-- Calculate color array (simple average of zone);
-- Send array to Arduino (Serial communication).
+1. Get screenshot (mss module);
+2. Calculate color array (simple average of zone);
+3. Send array to Arduino (Serial communication).
 
 ## Arduino
 Functions:  
-- Receive array from computer (Serial communication);
-- Drive LEDs (FastLED library)
+1. Receive array from computer (Serial communication);
+2. Drive LEDs (FastLED library)
 
 ******
 TODO:
