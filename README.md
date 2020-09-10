@@ -1,5 +1,5 @@
 # My take on ambilight
-Here's my take on creating an ambilight for my home TV. 
+Here's our take on creating an ambilight for my home TV. 
 Python does the image aquisition and calculations while the arduino drives the APA102 LEDs.  
 (It could eventually do more and better but for now it's working well enough.)
 
