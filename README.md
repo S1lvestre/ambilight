@@ -37,6 +37,8 @@ python main.py
 ```
 (do not close the terminal)
 
+Enjoy :)
+
 ******
 ## Python
 Functions:  
