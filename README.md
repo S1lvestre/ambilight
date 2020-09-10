@@ -25,13 +25,13 @@ Software: (see **requirements.txt**)
   - numpy
   - pyserial
 
-1 Clone this repo
+1. Clone this repo
 
-2 **Make sure the TV screen/monitor is 1920x1080p and is the only screen**  
+2. **Make sure the TV screen/monitor is 1920x1080p and is the only screen**  
 Or...  
-2 If you want to try another setup go to **main.py, line 29** and change the screen capture zone.
+2. If you want to try another setup go to **main.py, line 29** and change the screen capture zone.
 
-3 To use simply enter the repo folder and run:
+3. To use simply enter the repo folder and run:
 ```
 python main.py
 ```
