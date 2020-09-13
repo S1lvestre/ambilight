@@ -18,7 +18,7 @@ Gear:
 Schematic: 
 ![alt text][logo]
 
-[logo]: https://github.com/S1lvestre/ambilight/ambilight-schematic.png  "text"
+[logo]: https://github.com/S1lvestre/ambilight/readme-imgs/ambilight-schematic.png  "text"
 
 ### Software
 Software: (see **requirements.txt**)
