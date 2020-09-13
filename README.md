@@ -15,7 +15,10 @@ Gear:
 - LEDs
 - Power Suply
 
-\< pic \>
+Schematic: 
+![alt text][logo]
+
+[logo]: https://github.com/S1lvestre/ambilight/ambilight-schematic.png  "text"
 
 ### Software
 Software: (see **requirements.txt**)
