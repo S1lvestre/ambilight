@@ -3,8 +3,11 @@ Python does the image aquisition and calculations while the arduino drives the A
 (It could eventually do more and better but for now it's working well enough.)
 
 Obligatory screenshot with results.  
-\< insert image \>  
-avr fps: \< - \> on \< specs \>
+![alt text](https://github.com/S1lvestre/ambilight/blob/master/readme-files/static-result.jpg)
+
+![Alt Text](https://github.com/S1lvestre/ambilight/blob/master/readme-files/dynamic-result.gif)
+
+Averages ~15fps on Intel i5-3317U (dual core).
 
 ******
 ## Setup
@@ -16,7 +19,7 @@ Gear:
 - Power Suply
 
 Schematic: 
-![alt text](https://github.com/S1lvestre/ambilight/blob/master/readme-imgs/ambilight-schematic.png)
+![alt text](https://github.com/S1lvestre/ambilight/blob/master/readme-files/ambilight-schematic.png)
 
 ### Software
 Software: (see **requirements.txt**)
